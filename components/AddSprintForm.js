@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useRouter } from 'next/router';
 import styles from '../styles/UIKit.module.css'
 
 export default function AddSprintForm(props) {
@@ -7,6 +8,8 @@ export default function AddSprintForm(props) {
   const [status, setStatus] = useState("");
   const [goalId, setGoalId] = useState("");
   const [description, setDescription] = useState("");
+
+  const router = useRouter();
 
   async function handleFormSubmit(event) {
     event.preventDefault();
@@ -20,6 +23,7 @@ export default function AddSprintForm(props) {
     })
     const data = await response.json()
     props.action(); // close the form
+    router.push('/sprints')
   }
 
   return (
