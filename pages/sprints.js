@@ -1,6 +1,24 @@
 import AddSprintButton from '../components/AddSprintButton.js';
+import {useState, useEffect} from 'react'
+import { getSession, signIn} from "next-auth/react"
 
-export default function sprints({data}) {
+export default function Sprints({data}) {
+  const [loading, setLoading] = useState(true)
+  useEffect(() => {
+    const securePage = async() => {
+      const session = await getSession()
+      if(!session) {
+        signIn()
+      } else {
+        setLoading(false)
+      }
+    }
+    securePage()
+
+  }, [])
+  if (loading) {
+    return <h2>Loading...</h2>
+  }
     console.log(data)
     return (
         <div>
