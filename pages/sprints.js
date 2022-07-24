@@ -14,11 +14,12 @@ export default function Sprints({data}) {
       }
     }
     securePage()
-
   }, [])
+
   if (loading) {
     return <h2>Loading...</h2>
   }
+
     console.log(data)
     return (
         <div>
