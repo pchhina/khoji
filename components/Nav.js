@@ -9,9 +9,7 @@ export default function Nav() {
             <ul>
                 <li>
                     <Link href='/'>Home</Link>
-                    {session && <Link href='/sprints'>Sprints</Link>}
-                    {!session && <Link href='/api/auth/signin'>Sign In</Link>}
-                    {session && <Link href='/api/auth/signout'>Sign Out</Link>}
+                    <Link href='/sprints'>Sprints</Link>
 
                 </li>
             </ul>
