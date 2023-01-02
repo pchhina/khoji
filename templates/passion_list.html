@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Passions{% endblock title %}
+
+{% block content %}
+{% for passion in passion_list %}
+<div class="card">
+    <div class="card-header">
+        <span class="font-weight-bold">{{ passion.name }}</span> &middot;
+        <span class="text-muted">by {{ passion.owner }} |
+            {{ passion.date}}
+        </span>
+    </div>
+    <div class="card-body">
+        {{ passion.description }}
+    </div>
+    <div class="card-footer text-center text-muted">
+        <a href="{% url 'passion_edit' passion.pk %}">Edit</a>
+    </div>
+</div>
+<br />
+{% endfor %}
+{% endblock content %}
