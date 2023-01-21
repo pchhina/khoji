@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Goals{% endblock title %}
+
+{% block content %}
+{% for goal in goal_list %}
+<div class="card">
+    <div class="card-header">
+        <span class="font-weight-bold">{{ goal.name }}</span> &middot;
+        <span class="text-muted">by {{ goal.owner }} |
+            {{ goal.target_start_date}} | {{ goal.target_finish_date}}
+        </span>
+    </div>
+    <div class="card-body">
+        {{ goal.description }}
+    </div>
+    <div class="card-footer text-center text-muted">
+        <a href="{% url 'goal_edit' goal.pk %}">Edit</a>
+    </div>
+</div>
+<br />
+{% endfor %}
+{% endblock content %}

@@ -18,6 +18,8 @@
                   {% if user.is_authenticated %}
                     <li><a href="{% url 'passion_new' %}" class="nav-link px-2 link-dark">+ New Passion</a></li> 
                     <li><a href="{% url 'passion_list' %}" class="nav-link px-2 link-dark">All Passions</a></li> 
+                    <li><a href="{% url 'goal_new' %}" class="nav-link px-2 link-dark">+ New Goal</a></li> 
+                    <li><a href="{% url 'goal_list' %}" class="nav-link px-2 link-dark">All Goals</a></li> 
                   </ul>
                   <div class="dropdown text-end">
                     <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle"
