@@ -32,6 +32,9 @@ class Goal(models.Model):
         on_delete=models.CASCADE,
     )
     passion = models.ForeignKey(Passion, on_delete=models.CASCADE, blank=False)
+    members = models.ManyToManyField(
+        settings.AUTH_USER_MODEL, blank=True, related_name="goal_members"
+    )
 
     def __str__(self):
         return self.name

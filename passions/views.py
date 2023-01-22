@@ -43,6 +43,7 @@ class GoalUpdateView(UpdateView):
         "name",
         "description",
         "target_finish_date",
+        "members",
     )
     template_name = "goal_edit.html"
     success_url = reverse_lazy("goal_list")
@@ -58,5 +59,6 @@ class GoalCreateView(CreateView):
         "target_start_date",
         "target_finish_date",
         "passion",
+        "members",
     )
     success_url = reverse_lazy("goal_list")
