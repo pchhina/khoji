@@ -15,6 +15,7 @@ class PassionUpdateView(UpdateView):
     fields = (
         "name",
         "description",
+        "members",
     )
     template_name = "passion_edit.html"
     success_url = reverse_lazy("passion_list")
@@ -27,6 +28,7 @@ class PassionCreateView(CreateView):
         "name",
         "description",
         "owner",
+        "members",
     )
     success_url = reverse_lazy("passion_list")
 

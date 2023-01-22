@@ -13,6 +13,9 @@ class Passion(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )
+    members = models.ManyToManyField(
+        settings.AUTH_USER_MODEL, blank=True, related_name="passion_members"
+    )
 
     def __str__(self):
         return self.name
