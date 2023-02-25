@@ -133,4 +133,12 @@ LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "home"
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+DEFAULT_FROM_EMAIL = "thoughtsandbots@gmail.com"
+EMAIL_HOST = "smtp.sendgrid.net"
+EMAIL_HOST_USER = "apikey"
+EMAIL_HOST_PASSWORD = (
+    "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"
+)
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

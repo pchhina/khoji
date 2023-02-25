@@ -17,6 +17,16 @@
     <div class="card-footer text-center text-muted">
         <a href="{% url 'goal_edit' goal.pk %}">Edit</a>
     </div>
+    <div class="card-footer">
+        {% for comment in goal.goalcomment_set.all %}
+        <p>
+            <span class="font-weight-bold">
+                {{ comment.author }} &middot;
+            </span>
+            {{ comment }}
+        </p>
+        {% endfor %}
+    </div>
 </div>
 <br />
 {% endfor %}

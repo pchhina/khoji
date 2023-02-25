@@ -44,3 +44,33 @@ class Goal(models.Model):
 
     def get_absolute_url(self):
         return reverse("goal_list", kwargs={"pk": self.pk})
+
+
+class PassionComment(models.Model):
+    passion = models.ForeignKey(Passion, on_delete=models.CASCADE)
+    comment = models.CharField(max_length=255)
+    author = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
+
+    def __str__(self):
+        return self.comment
+
+    def get_absolute_url(self):
+        return reverse("passion_list")
+
+
+class GoalComment(models.Model):
+    goal = models.ForeignKey(Goal, on_delete=models.CASCADE)
+    comment = models.CharField(max_length=255)
+    author = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
+
+    def __str__(self):
+        return self.comment
+
+    def get_absolute_url(self):
+        return reverse("goal_list")
