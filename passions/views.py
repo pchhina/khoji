@@ -1,10 +1,56 @@
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView, FormView
 from django.views.generic.edit import UpdateView, CreateView
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
+from django.views import View
+from django.views.generic.detail import SingleObjectMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 from .models import Passion, Goal
+from .forms import PassionCommentForm, GoalCommentForm
 
 # Create your views here.
+
+
+class PassionCommentGet(DetailView):
+    model = Passion
+    template_name = "passion_detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["form"] = PassionCommentForm()
+        return context
+
+
+class PassionCommentPost(SingleObjectMixin, FormView):
+    model = Passion
+    form_class = PassionCommentForm
+    template_name = "passion_detail.html"
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        return super().post(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        comment = form.save(commit=False)
+        comment.passion = self.object
+        comment.save()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        passion = self.get_object()
+        return reverse("passion_detail", kwargs={"pk": passion.pk})
+
+
+class PassionDetailView(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        view = PassionCommentGet.as_view()
+        return view(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        view = PassionCommentPost.as_view()
+        return view(request, *args, **kwargs)
+
+
 class PassionListView(ListView):
     model = Passion
     template_name = "passion_list.html"
@@ -34,6 +80,46 @@ class PassionCreateView(CreateView):
 
 
 # Create your views here.
+class GoalCommentGet(DetailView):
+    model = Goal
+    template_name = "goal_detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["form"] = GoalCommentForm()
+        return context
+
+
+class GoalCommentPost(SingleObjectMixin, FormView):
+    model = Goal
+    form_class = GoalCommentForm
+    template_name = "goal_detail.html"
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        return super().post(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        comment = form.save(commit=False)
+        comment.goal = self.object
+        comment.save()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        goal = self.get_object()
+        return reverse("goal_detail", kwargs={"pk": goal.pk})
+
+
+class GoalDetailView(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        view = GoalCommentGet.as_view()
+        return view(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        view = GoalCommentPost.as_view()
+        return view(request, *args, **kwargs)
+
+
 class GoalListView(ListView):
     model = Goal
     template_name = "goal_list.html"

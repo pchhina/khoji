@@ -3,11 +3,12 @@
 {% block title %}Goals{% endblock title %}
 
 {% block content %}
+<h1 class="text-center">My Goals</h1>
 {% for goal in goal_list %}
 <div class="card">
-    <div class="card-header">
-        <span class="font-weight-bold">{{ goal.name }}</span> &middot;
-        <span class="text-muted">by {{ goal.owner }} |
+    <div class="card-header" style="background-color: #dff3f8">
+        <span class="fw-bold fs-3">{{ goal.name }}</span> &middot;
+        <span class="text-muted">Creator: {{ goal.owner }} |
             {{ goal.target_start_date}} | {{ goal.target_finish_date}}
         </span>
     </div>
@@ -15,18 +16,10 @@
         {{ goal.description }}
     </div>
     <div class="card-footer text-center text-muted">
-        <a href="{% url 'goal_edit' goal.pk %}">Edit</a>
+        <a href="{% url 'goal_edit' goal.pk %}" class="btn btn-secondary btn-sm">Edit</a>
+        <a href="{% url 'goal_detail' goal.pk %}" class="btn btn-secondary btn-sm">Details</a>
     </div>
-    <div class="card-footer">
-        {% for comment in goal.goalcomment_set.all %}
-        <p>
-            <span class="font-weight-bold">
-                {{ comment.author }} &middot;
-            </span>
-            {{ comment }}
-        </p>
-        {% endfor %}
-    </div>
+    
 </div>
 <br />
 {% endfor %}

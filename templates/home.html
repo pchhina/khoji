@@ -3,13 +3,18 @@
 {% block title %}Home{% endblock title %}
 
 {% block content %}
-{% if user.is_authenticated %}
-    Hi {{ user.username }}!
-    <p><a href="{% url 'logout' %}">Log Out</a></p>
-{% else %}
-    <p>You are not logged in</p>
-    <a href="{% url 'login' %}">Log In</a> |
-    <a href="{% url 'signup' %}">Sign Up</a>
+
+
+
+        <div class="d-flex flex-column align-items-center vh-100 pt-5" style="background-color:#dfe7f8; background-image: linear-gradient(to bottom, #dfe7f8, #aec5d9, #7ba5b7, #488690, #106766);">
+            {% if user.is_authenticated %}
+            <h1 class="display-1 mt-5 pt-5 fw-bold">Hello {{ user.username }}!</h1>
+            <p class="h3 fst-italic mt-5">... a central place to track your goals and passions</p>
+            {% else %}
+            <h1 class="display-1 mt-5 pt-5 fw-bold">Welcome to Khoji!</h1>
+            <p class="h3 fst-italic mt-5">Please log-in or register</p>
+        </div>
+
 
 {% endif %}
 {% endblock content %}

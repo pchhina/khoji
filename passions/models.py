@@ -21,7 +21,7 @@ class Passion(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("passion_list", kwargs={"pk": self.pk})
+        return reverse("passion_detail", kwargs={"pk": self.pk})
 
 
 class Goal(models.Model):
@@ -43,7 +43,7 @@ class Goal(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("goal_list", kwargs={"pk": self.pk})
+        return reverse("goal_detail", kwargs={"pk": self.pk})
 
 
 class PassionComment(models.Model):

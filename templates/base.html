@@ -8,20 +8,22 @@
     </head>
     <body>
         <div class="container">
-            <header class="p-3 mb-3 border-bottom">
+            <header class="p-3 mb-3 border-bottom" style="background-color: #d4eeeb">
               <div class="container">
                 <div class="d-flex flex-wrap align-items-center justify-content-center
                   justify-content-lg-start">
-                  <a class="navbar-brand" href="{% url 'home' %}">Khoji</a>
+                  <a class="navbar-brand fs-1 fw-bold" style="color: darkgreen;" href="{% url 'home' %}">Khoji</a>
                   <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center
                     mb-md-0">
                   {% if user.is_authenticated %}
-                    <li><a href="{% url 'passion_new' %}" class="nav-link px-2 link-dark">+ New Passion</a></li> 
-                    <li><a href="{% url 'passion_list' %}" class="nav-link px-2 link-dark">All Passions</a></li> 
-                    <li><a href="{% url 'goal_new' %}" class="nav-link px-2 link-dark">+ New Goal</a></li> 
-                    <li><a href="{% url 'goal_list' %}" class="nav-link px-2 link-dark">All Goals</a></li> 
-                  </ul>
-                  <div class="dropdown text-end">
+                  <li><a href="{% url 'passion_list' %}" class="nav-link px-3 link-dark fw-bold">All Passions</a></li>
+                    <li><a href="{% url 'passion_new' %}" class="nav-link px-3 link-dark fw-bold me-5">+ New Passion</a></li> 
+                     
+                    
+                    <li><a href="{% url 'goal_list' %}" class="nav-link px-3 link-dark fw-bold ms-5">All Goals</a></li> 
+                    <li><a href="{% url 'goal_new' %}" class="nav-link px-3 link-dark fw-bold">+ New Goal</a></li>   
+                </ul>
+                  <div class="dropdown text-end fw-bold">
                     <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle"
                       id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                       {{ user.username }}
@@ -35,8 +37,8 @@
                   {% else %}
                   </ul>
                   <div class="text-end">
-                    <a href="{% url 'login' %}" class="btn btn-outline-primary me-2">Log In</a>
-                    <a href="{% url 'signup' %}" class="btn btn-primary">Sign Up</a>
+                    <a href="{% url 'login' %}" class="btn btn-outline-success me-2">Log In</a>
+                    <a href="{% url 'signup' %}" class="btn btn-success">Sign Up</a>
                   </div>
                   {% endif %}        
                 </div>

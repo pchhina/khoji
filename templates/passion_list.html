@@ -3,11 +3,12 @@
 {% block title %}Passions{% endblock title %}
 
 {% block content %}
+<h1 class="text-center">My Passions</h1>
 {% for passion in passion_list %}
 <div class="card">
-    <div class="card-header">
-        <span class="font-weight-bold">{{ passion.name }}</span> &middot;
-        <span class="text-muted">by {{ passion.owner }} |
+    <div class="card-header" style="background-color: #dff3f8">
+        <span class="fw-bold fs-3">{{ passion.name }}</span> &middot;
+        <span class="text-muted">Creator: {{ passion.owner }} |
             {{ passion.date}}
         </span>
     </div>
@@ -15,18 +16,10 @@
         {{ passion.description }}
     </div>
     <div class="card-footer text-center text-muted">
-        <a href="{% url 'passion_edit' passion.pk %}">Edit</a>
+        <a href="{% url 'passion_edit' passion.pk %}" class="btn btn-secondary btn-sm">Edit</a>
+        <a href="{% url 'passion_detail' passion.pk %}" class="btn btn-secondary btn-sm">Details</a>
     </div>
-    <div class="card-footer">
-        {% for comment in passion.passioncomment_set.all %}
-        <p>
-            <span class="font-weight-bold">
-                {{ comment.author }} &middot;
-            </span>
-            {{ comment }}
-        </p>
-        {% endfor %}
-    </div>
+    
 </div>
 <br />
 {% endfor %}
