@@ -138,7 +138,7 @@ DEFAULT_FROM_EMAIL = "param.chhina@gmail.com"
 EMAIL_HOST = "smtp.sendgrid.net"
 EMAIL_HOST_USER = "apikey"
 EMAIL_HOST_PASSWORD = (
-    "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"
+    ""
 )
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
