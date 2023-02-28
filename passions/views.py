@@ -73,10 +73,12 @@ class PassionCreateView(CreateView):
     fields = (
         "name",
         "description",
-        "owner",
         "members",
     )
-    success_url = reverse_lazy("passion_list")
+    # success_url = reverse_lazy("passion_list")
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        return super().form_valid(form)
 
 
 # Create your views here.
@@ -143,10 +145,12 @@ class GoalCreateView(CreateView):
     fields = (
         "name",
         "description",
-        "owner",
         "target_start_date",
         "target_finish_date",
         "passion",
         "members",
     )
-    success_url = reverse_lazy("goal_list")
+
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        return super().form_valid(form)
